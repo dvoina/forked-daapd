@@ -5,13 +5,13 @@
 
 %bcond_without alsa
 %bcond_with pulseaudio
-%bcond_without libcurl
+%bcond_with libcurl
 %bcond_without json
 %bcond_with itunes
 %bcond_with spotify
 %bcond_with lastfm
 %bcond_with chromecast
-%bcond_without mpd
+%bcond_with mpd
 
 %global _hardened_build 1
 
@@ -98,6 +98,7 @@ echo "ERROR: Option '-with chromecast' cannot be used with '-without json'" >&2 
 %setup -q
 
 %build
+autoreconf -i
 %configure \
 %if %{without alsa}
   --without-alsa \
